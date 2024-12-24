@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myth or Me</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #141E30, #243B55);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #FF6F61;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #FF5A3C;
+        }
+
+        .myth-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Myth or Me</h1>
+        <p>Discover a myth inspired by you!</p>
+        
+        <!-- User Input Section -->
+        <input type="text" id="userName" placeholder="Enter your name" />
+        <input type="text" id="userTrait" placeholder="Enter a trait or hobby" />
+        
+        <!-- Generate Myth Button -->
+        <button id="generateButton">Generate My Myth</button>
+        
+        <!-- Display Myth -->
+        <div id="mythDisplay" class="myth-box"></div>
+    </div>
+
+    <script>
+        const myths = [
+            "{name} was chosen by the gods to guard the mystical forest of {trait}.",
+            "Long ago, {name} discovered the secret realm of {trait}, unlocking untold powers.",
+            "Legends speak of {name}, who tamed the mighty dragon of {trait}.",
+            "In the ancient world, {name} became the ruler of {trait}, a kingdom of eternal light."
+        ];
+
+        document.getElementById("generateButton").addEventListener("click", () => {
+            const userName = document.getElementById("userName").value || "A Hero";
+            const userTrait = document.getElementById("userTrait").value || "Mystery";
+            
+            const randomIndex = Math.floor(Math.random() * myths.length);
+            const selectedMyth = myths[randomIndex]
+                .replace("{name}", userName)
+                .replace("{trait}", userTrait);
+            
+            document.getElementById("mythDisplay").innerText = selectedMyth;
+        });
+    </script>
+</body>
+</html>
